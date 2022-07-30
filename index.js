@@ -72,7 +72,7 @@ router.get('/', async (req, res) => {
         try{
             url = new URL(uri)
             var ext = url.pathname.split('.')
-            filename=`\\${makeid(10)}.${ext[ext.length - 1]}`
+            const filename=`\\${makeid(10)}.${ext[ext.length - 1]}`
             request(uri).pipe(fs.createWriteStream(__dirname + filename)).on('close', ()=>{
                 res.sendFile(__dirname+filename,()=>{
                     fs.unlinkSync(__dirname+filename)
